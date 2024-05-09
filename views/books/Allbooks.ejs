@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <title>Book Store!</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-info text-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="mx-2 btn btn-success border-dark" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" btn btn-warning border-dark" href="/book/new">Add Book</a>
+                    </li>
+                    
+                </ul>
+                <form class="d-flex" role="search">
+                    <% if(!currentUser){ %>
+                      <a class="btn btn-success ml-3 border-dark" href="/login">Login</a>&nbsp;
+                      <% } else { %>
+                        <a class="btn btn-success ml-3 border-dark" href="">Welcome <%= currentUser.username %></a>&nbsp;
+                        <a class="btn btn-warning border-dark" href="/logout">Logout</a>&nbsp;
+                    <% } %>
+                  </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-3">
+        <div class="row">
+            <%for(let item of books){%>
+                <div class="col-lg-4 product-card">
+                    <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
+                        <img class="img" src="<%=item.img%>" class="card-img-top" width="286" height="400" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title"> <%=item.name%> </h3>
+                            <!-- <h5 class="card-title"> Rs:- <%=item.price%> </h5> -->
+                            <b><p class="card-text text-primary"> By:- <%=item.author%> </p></b>
+                            <br>
+                            <% if(!currentUser){ %>
+                                <a href="#" class="btn btn-danger">Login To View Book </a>
+                            <% } else { %>
+                                <a href="/book/<%=item.id%>" class="btn btn-primary ml-3 border-dark" href="">View Book</a>&nbsp;
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <title>Book Store!</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-info text-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="mx-2 btn btn-success border-dark" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" btn btn-warning border-dark" href="/book/new">Add Book</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <% if(!currentUser){ %>
+                      <a class="btn btn-success ml-3 border-dark" href="/login">Login</a>&nbsp;
+                    <% } else { %>
+                      <a class="btn btn-success ml-3 border-dark" href="">Welcome <%= currentUser.username %></a>&nbsp;
+                      <a class="btn btn-warning border-dark" href="/logout">Logout</a>&nbsp;
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-6 product-card mt-5">
+            <div class="card shadow mt-3 mx-auto" style="width: 22rem;">
+                <div class="card-body">
+                    <h3 class="card-title text-center"> <%= foundbook.name %> </h3>
+                    <h5 class="card-title"> Rs: <%= foundbook.price %> </h5>
+                    <br>
+                    <b><p class="card-text text-primary"> By:- <%= foundbook.author %> </p></b>
+                    <br>
+                    <b><p class="card-text text-warning"> Genre:- <%= foundbook.genre %> </p></b>
+                    <br>
+                    <a href="#" class="btn btn-success">Buy</a>
+                    <a href="/book/<%=foundbook.id%>/edit" class="btn btn-info">Edit</a>
+                    <form class="d-inline-block" action="/book/delete/<%=foundbook.id%>" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 my-2">
+            <img class="img" src="<%=foundbook.img%>" height="500" width="300"  class="card-img-top" alt="...">
+        </div>
+    </div>
+    
+
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
